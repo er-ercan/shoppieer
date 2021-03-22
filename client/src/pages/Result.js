@@ -1,6 +1,35 @@
-import React from "react";
+import axios from 'axios';
+import LoadingSpinner from '../components/LoadingSpinner';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { useLocation } from 'react-router';
+import formatProductPrice from '../utils/formatProductPrice';
+
+function useQueryString() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export default function Result() {
+  const queryString = useQueryString();
+  const sessionId = queryString.get('session_id');
+  const { data, isError, isLoading } = useQuery('Result', () =>
+    sessionId
+      ? axios(`/api/checkout-sessions/${sessionId}`).then(res => res.data)
+      : null
+  );
+
+  if (isLoading) return <LoadingSpinner />;
+
+  if (!data && !isLoading)
+    return <div className="text-white">No purchase found</div>;
+
+  if (isError)
+    return <div className="text-white">Error loading result page</div>;
+
+  const price = formatProductPrice({
+    price: data.amount_total,
+    currency: data.currency
+  });
   return (
     <section className="text-gray-400 bg-gray-900 body-font">
       <div className="container px-5 py-24 mx-auto">
@@ -14,10 +43,10 @@ export default function Result() {
           </p>
           <br />
           <h2 className="text-xl text-indigo-400 tracking-widest font-medium title-font mb-1">
-            Order Total: Amount
+            Order Total: {price}
           </h2>
           <h2 className="text-xl text-indigo-400 tracking-widest font-medium title-font mb-1">
-            Email: Email
+            Email: {data.customer_details.email}
           </h2>
         </div>
       </div>
