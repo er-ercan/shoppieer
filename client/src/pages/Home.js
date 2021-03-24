@@ -7,10 +7,10 @@ export default function Home() {
       <div className="container px-5 py-24 mx-auto">
         <div className="text-center mb-20">
           <h1 className="sm:text-3xl text-2xl font-medium title-font text-white mb-4">
-            Ercan Er E-Commerce Structure
+            Shoppingeer
           </h1>
           <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-400 text-opacity-80">
-            E-Commerce (React, Node Js, Express, Stripe and React Query)
+            Ercan Er
           </p>
           <div className="flex mt-6 justify-center">
             <div className="w-16 h-1 rounded-full bg-indigo-500 inline-flex" />

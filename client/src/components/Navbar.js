@@ -3,6 +3,7 @@ import { LogoIcon } from './Icons';
 import { Link } from 'react-router-dom';
 import CartSummary from './CartSummary';
 import CheckoutCart from './CheckoutCart';
+import LocalStorageLocalizationButton from '../utils/LocalStorageLocalizationButton';
 
 export default function Navbar() {
   return (
@@ -19,8 +20,12 @@ export default function Navbar() {
             </span>
           </span>
         </Link>
+
         <CartSummary />
         <CheckoutCart />
+        <div className="pl-5 xs:mt-2 text-gray-400 bg-gray-900 body-font">
+          <LocalStorageLocalizationButton />
+        </div>
       </div>
     </header>
   );

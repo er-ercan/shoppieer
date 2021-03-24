@@ -30,6 +30,7 @@ function ProductItem({ product }) {
             className="lg:h-96 md:h-36 w-full object-cover object-center"
             src={product.image}
             alt={product.name}
+            loading="lazy"
           />
         </Link>
         <div className="p-6">
